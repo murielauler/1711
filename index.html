@@ -118,6 +118,15 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
 .dl-row a:hover { border-color: var(--accent); color: var(--accent); }
 .prompt-head strong { font-size: .92rem; color: #fff; font-weight: 600; }
 
+.escolha { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin-top: 1.3rem; }
+.opc { text-align: left; display: grid; gap: .2rem; padding: .9rem 1.1rem; border: 1.5px solid var(--line); border-radius: .8rem; background: #fff; color: var(--text); cursor: pointer; transition: border-color .15s, background .15s; }
+.opc:hover { border-color: var(--accent-line); }
+.opc.is-on { border-color: var(--accent); background: var(--accent-soft); }
+.opc .part { font-size: .72rem; font-weight: 800; letter-spacing: .1em; color: var(--accent); }
+.opc strong { font-size: 1.02rem; color: var(--ink); }
+.opc span:last-child { font-size: .88rem; color: var(--muted); }
+@media (max-width: 860px) { .escolha { grid-template-columns: 1fr; } }
+
 .overlay { display: none; }
 
 @media (max-width: 860px) {
@@ -158,15 +167,15 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
       <a href="#ex3"><span class="n">03</span><span>Transforme em artefato</span></a>
       <a href="#ex4"><span class="n">04</span><span>Transforme em skill</span></a>
       <a href="#ex5"><span class="n">05</span><span>Cowork: pasta do aluno</span></a>
-      <a href="#ex6"><span class="n">06</span><span>Cowork: funil de admissão</span></a>
+      <a href="#ex6"><span class="n">06</span><span>Cowork: escolha o seu painel</span></a>
       <a href="#ex7"><span class="n">07</span><span>Agende a atualização</span></a>
     </nav>
     <div class="side-links">
       <a href="arquivos/mensalidades_Kensington_2026-08_a_11.xlsx" download="mensalidades_Kensington_2026-08_a_11.xlsx">⬇ Planilha <small>.xlsx</small></a>
       <a href="arquivos/regras-da-escola-mensalidades.md" download="regras-da-escola-mensalidades.md">⬇ Regras da escola <small>.md</small></a>
       <a href="arquivos/Ex5-documentos-recebidos.zip" download="Ex5-documentos-recebidos.zip">⬇ Documentos do Ex5 <small>.zip</small></a>
-      <a href="arquivos/Ex6-caixa-de-admissoes.zip" download="Ex6-caixa-de-admissoes.zip">⬇ E-mails do Ex6 <small>.zip</small></a>
-      <a href="arquivos/Ex7-novos-emails.zip" download="Ex7-novos-emails.zip">⬇ E-mails novos do Ex7 <small>.zip</small></a>
+      <a href="arquivos/Ex6-opcao-A-caixa-de-admissoes.zip" download="Ex6-opcao-A-caixa-de-admissoes.zip">⬇ Ex6 · opção A <small>.zip</small></a>
+      <a href="arquivos/Ex6-opcao-B-minha-caixa.zip" download="Ex6-opcao-B-minha-caixa.zip">⬇ Ex6 · opção B <small>.zip</small></a>
       <a href="https://murielauler.github.io/17nov-ex01-diretoria/?turma=d1" target="_blank" rel="noopener">↗ Envie os seus números</a>
     </div>
     <div class="side-box"><strong>Dados fictícios.</strong> Não use dados reais de alunos ou famílias nos exercícios.</div>
@@ -187,8 +196,8 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
           <a href="#ex3"><span class="part">EXERCÍCIO 03</span><h4>Transforme em artefato</h4><p>Um dashboard de gestão em HTML.</p></a>
           <a href="#ex4"><span class="part">EXERCÍCIO 04</span><h4>Transforme em skill</h4><p>Ensine as regras da escola uma vez só.</p></a>
           <a href="#ex5"><span class="part">EXERCÍCIO 05</span><h4>Cowork: pasta do aluno</h4><p>Do documento solto à pasta organizada.</p></a>
-          <a href="#ex6"><span class="part">EXERCÍCIO 06</span><h4>Cowork: funil de admissão</h4><p>Dos e-mails a um quadro por família.</p></a>
-          <a href="#ex7"><span class="part">EXERCÍCIO 07</span><h4>Agende a atualização</h4><p>O quadro se atualiza todo dia útil.</p></a>
+          <a href="#ex6"><span class="part">EXERCÍCIO 06</span><h4>Cowork: escolha o seu painel</h4><p>Funil de admissão ou o painel da sua caixa.</p></a>
+          <a href="#ex7"><span class="part">EXERCÍCIO 07</span><h4>Agende a atualização</h4><p>O painel se atualiza todo dia útil.</p></a>
         </div>
         <footer class="step-foot">
           <nav class="pn"><a class="next" href="#ex1">Começar →</a></nav>
@@ -356,18 +365,23 @@ Se algum documento tiver problema, como falta de assinatura, não mova e me avis
       <!-- EX 6 -->
       <section class="step" id="ex6">
         <div class="step-meta"><span class="kicker">Exercício 06 de 07</span><span class="tag">Cowork</span></div>
-        <h2>Cowork: o funil de admissão</h2>
-        <p class="lead">Os e-mails de admissão estão espalhados. O Cowork monta um quadro com cada família e o que fazer hoje.</p>
-        <ol class="passos">
-          <li>Baixe a caixa de admissões e descompacte na sua pasta de teste do OneDrive pessoal.</li>
-          <li>Abra o Claude Desktop na aba Cowork, escolha a pasta e cole o pedido.</li>
-          <li>Abra o quadro-admissoes.html que o Cowork salvou na pasta.</li>
-        </ol>
-        <div class="btn-row">
-          <a class="btn ghost" href="arquivos/Ex6-caixa-de-admissoes.zip" download="Ex6-caixa-de-admissoes.zip">⬇ Baixar a caixa de admissões <small>(.zip, 16 e-mails)</small></a>
+        <h2>Cowork: escolha o seu painel</h2>
+        <p class="lead">Escolha uma opção. O Cowork lê os e-mails e monta um painel com o que fazer hoje.</p>
+        <div class="escolha" role="tablist">
+          <button type="button" class="opc is-on" data-opc="a" role="tab" aria-selected="true"><span class="part">OPÇÃO A</span><strong>Funil de admissão</strong><span>Para quem trabalha com admissão.</span></button>
+          <button type="button" class="opc" data-opc="b" role="tab" aria-selected="false"><span class="part">OPÇÃO B</span><strong>O painel da sua caixa</strong><span>Para quem só quer organizar os e-mails: o que chegou, o que é importante, o que ainda não respondi.</span></button>
         </div>
-        <div class="prompt">
-          <div class="prompt-head"><span class="label">Prompt</span><strong>O pedido do quadro</strong><button class="copy" type="button">Copiar</button></div>
+        <ol class="passos">
+          <li>Crie uma pasta de teste no seu OneDrive pessoal (nunca no SharePoint da escola).</li>
+          <li>Baixe o .zip da sua opção e descompacte nessa pasta.</li>
+          <li>Abra o Claude Desktop na aba Cowork, escolha a pasta e cole o pedido.</li>
+        </ol>
+        <div class="opcao" data-opc="a">
+          <div class="btn-row">
+            <a class="btn ghost" href="arquivos/Ex6-opcao-A-caixa-de-admissoes.zip" download="Ex6-opcao-A-caixa-de-admissoes.zip">⬇ Baixar a caixa de admissões <small>(.zip, 16 e-mails)</small></a>
+          </div>
+          <div class="prompt">
+            <div class="prompt-head"><span class="label">Opção A</span><strong>O pedido do quadro</strong><button class="copy" type="button">Copiar</button></div>
 <pre>Nesta pasta estão os e-mails de admissão das últimas semanas. Hoje é 17/11.
 
 As etapas do nosso processo são: Visita, Inscrição, Avaliação, Vaga oferecida, Matrícula, Matriculado.
@@ -379,6 +393,26 @@ No topo, liste o que eu preciso fazer hoje, do mais urgente para o menos urgente
 
 Salve o quadro como quadro-admissoes.html nesta pasta.
 Não responda nem envie nenhum e-mail.</pre>
+          </div>
+        </div>
+        <div class="opcao" data-opc="b" hidden>
+          <div class="btn-row">
+            <a class="btn ghost" href="arquivos/Ex6-opcao-B-minha-caixa.zip" download="Ex6-opcao-B-minha-caixa.zip">⬇ Baixar a sua caixa <small>(.zip, 16 e-mails)</small></a>
+          </div>
+          <div class="prompt">
+            <div class="prompt-head"><span class="label">Opção B</span><strong>O pedido do painel</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Nesta pasta estão os e-mails da minha caixa, os que recebi e os que enviei. Hoje é 17/11.
+
+Monte um painel da minha caixa com três blocos:
+1. O que chegou: cada e-mail em uma linha, agrupado por assunto.
+2. O que é importante: o que tem prazo, pede uma ação minha ou vem da diretoria ou de famílias. Diga o porquê.
+3. O que eu ainda não respondi: e-mails que pedem resposta e que eu não respondi, do mais antigo para o mais novo.
+
+No topo, liste o que eu preciso fazer hoje, do mais urgente para o menos urgente.
+
+Salve o painel como caixa-de-hoje.html nesta pasta.
+Não responda nem envie nenhum e-mail.</pre>
+          </div>
         </div>
         <footer class="step-foot">
           <nav class="pn"><a href="#ex5">← Exercício 05</a><a class="next" href="#ex7">Exercício 07 →</a></nav>
@@ -389,18 +423,19 @@ Não responda nem envie nenhum e-mail.</pre>
       <section class="step" id="ex7">
         <div class="step-meta"><span class="kicker">Exercício 07 de 07</span><span class="tag">Cowork</span></div>
         <h2>Agende a atualização</h2>
-        <p class="lead">O quadro fica velho no dia seguinte. Peça para o Cowork atualizar sozinho todo dia útil.</p>
+        <p class="lead">O painel fica velho no dia seguinte. Peça para o Cowork atualizar sozinho todo dia útil. Vale para as duas opções.</p>
         <ol class="passos">
           <li>Na mesma pasta do Ex6, cole o pedido de agendamento no Cowork.</li>
-          <li>Para testar, baixe os 2 e-mails novos, descompacte na pasta e peça para rodar a tarefa agora.</li>
+          <li>Para testar, copie os novos e-mails da sua opção para a pasta e peça para rodar a tarefa agora.</li>
         </ol>
         <div class="btn-row">
-          <a class="btn ghost" href="arquivos/Ex7-novos-emails.zip" download="Ex7-novos-emails.zip">⬇ Baixar os e-mails novos <small>(.zip, 2 e-mails)</small></a>
+          <a class="btn ghost" href="arquivos/Ex7-novos-emails-opcao-A.zip" download="Ex7-novos-emails-opcao-A.zip">⬇ Novos e-mails · opção A <small>(.zip, 2)</small></a>
+          <a class="btn ghost" href="arquivos/Ex7-novos-emails-opcao-B.zip" download="Ex7-novos-emails-opcao-B.zip">⬇ Novos e-mails · opção B <small>(.zip, 2)</small></a>
         </div>
         <div class="prompt">
           <div class="prompt-head"><span class="label">Prompt</span><strong>O pedido do agendamento</strong><button class="copy" type="button">Copiar</button></div>
 <pre>Agende esta tarefa para todo dia útil às 8h:
-leia os e-mails desta pasta, atualize o quadro-admissoes.html e me diga o que mudou desde a última atualização.
+leia os e-mails desta pasta, atualize o painel .html que você criou e me diga o que mudou desde a última atualização.
 Não responda nem envie nenhum e-mail.</pre>
         </div>
         <footer class="step-foot">
@@ -427,6 +462,14 @@ Não responda nem envie nenhum e-mail.</pre>
   }
   window.addEventListener("hashchange", mostrar);
   mostrar();
+
+  document.querySelectorAll(".opc").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var o = b.getAttribute("data-opc");
+      document.querySelectorAll(".opc").forEach(function (x) { var on = x === b; x.classList.toggle("is-on", on); x.setAttribute("aria-selected", on ? "true" : "false"); });
+      document.querySelectorAll(".opcao").forEach(function (x) { x.hidden = x.getAttribute("data-opc") !== o; });
+    });
+  });
 
   var toggle = document.querySelector(".menu-toggle");
   toggle.addEventListener("click", function () {
