@@ -184,7 +184,7 @@ details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
         <div class="cards">
           <a href="#ex1"><span class="part">EXERCÍCIO 01</span><h4>Configure o seu Claude</h4><p>4 perguntas e o Claude escreve as suas instruções.</p></a>
           <a href="#ex2"><span class="part">EXERCÍCIO 02</span><h4>Analise as mensalidades</h4><p>A planilha e o pedido da diretoria.</p></a>
-          <a href="#ex3"><span class="part">EXERCÍCIO 03</span><h4>Transforme em artefato</h4><p>Um painel para apresentar à diretoria.</p></a>
+          <a href="#ex3"><span class="part">EXERCÍCIO 03</span><h4>Transforme em artefato</h4><p>Um dashboard de gestão em HTML.</p></a>
           <a href="#ex4"><span class="part">EXERCÍCIO 04</span><h4>Transforme em skill</h4><p>Ensine as regras da escola uma vez só.</p></a>
           <a href="#ex5"><span class="part">EXERCÍCIO 05</span><h4>Cowork: pasta do aluno</h4><p>Do documento solto à pasta organizada.</p></a>
           <a href="#ex6"><span class="part">EXERCÍCIO 06</span><h4>Cowork: funil de admissão</h4><p>Dos e-mails a um quadro por família.</p></a>
@@ -258,10 +258,18 @@ Responda aqui no chat, sem criar painel nem arquivo. No fim, escreva os três n�
       <section class="step" id="ex3">
         <div class="step-meta"><span class="kicker">Exercício 03 de 07</span></div>
         <h2>Transforme a análise em um artefato</h2>
-        <p class="lead">No mesmo chat da análise, peça um painel e deixe do seu jeito.</p>
+        <p class="lead">No mesmo chat da análise, peça um dashboard de gestão em HTML e deixe do seu jeito.</p>
         <div class="prompt">
           <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
-<pre>Transforme esta análise em um painel (artefato) para eu apresentar à diretoria. Mostre só o nome dos alunos. Nada de CPF, telefone ou outro dado sensível.</pre>
+<pre>Crie um artefato em HTML com um dashboard de gestão das mensalidades, para a diretoria acompanhar todo mês.
+
+Não quero só a resposta das três perguntas. Quero ver como está o negócio:
+- indicadores no topo: alunos ativos, faturamento, valor recebido e inadimplência;
+- a evolução mês a mês;
+- a inadimplência por ano escolar e por tempo de atraso;
+- a lista de quem está em atraso, do maior valor para o menor.
+
+Mostre só o nome dos alunos. Nada de CPF, telefone ou outro dado sensível.</pre>
         </div>
         <div class="bloco">
           <h3>Depois, deixe do seu jeito</h3>
