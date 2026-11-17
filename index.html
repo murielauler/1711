@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Workshop · 17/11</title>
+<meta name="description" content="Prompts, arquivos e links dos exercícios do workshop de Claude.">
+<style>
+:root {
+  --ink: #30251F;
+  --text: #3a2e27;
+  --muted: #755B4A;
+  --faint: #a8968a;
+  --violet: #EF701A;
+  --violet-ink: #c85a0f;
+  --violet-soft: #fde9da;
+  --violet-line: #f4c9a6;
+  --green: #EF701A;
+  --green-soft: #fdf1e6;
+  --paper: #FFF9F1;
+  --white: #ffffff;
+  --line: #ece2d8;
+  --code-bg: #2b211c;
+  --code-fg: #f7ede4;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  margin: 0; background: var(--paper); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+h1, h2, h3 { color: var(--ink); line-height: 1.25; margin: 0; }
+p { margin: 0; }
+button { font: inherit; }
+
+/* topo */
+.topbar { position: sticky; top: 0; z-index: 10; height: 52px; display: flex; align-items: center; gap: 16px; padding: 0 20px; background: var(--ink); color: #fff; }
+.topbar .brand { font-size: 14px; font-weight: 700; white-space: nowrap; }
+.topbar nav { margin-left: auto; display: flex; gap: 6px; }
+.topbar nav a { color: #e9d6c6; text-decoration: none; font-size: 13px; font-weight: 700; padding: 5px 10px; border-radius: 999px; }
+.topbar nav a:hover { background: rgb(255 255 255 / 10%); color: #fff; }
+
+.content { max-width: 760px; margin: 0 auto; padding: 36px 20px 64px; }
+.kicker { font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); }
+h1 { font-size: 30px; letter-spacing: -.015em; margin-top: 8px; }
+.lead { margin-top: 10px; color: var(--muted); font-size: 17px; }
+
+/* exercícios */
+.ex { margin-top: 28px; background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 26px 26px 28px; }
+.ex-head { display: flex; align-items: center; gap: 14px; }
+.num { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--violet-soft); color: var(--violet); font-weight: 800; font-size: 17px; }
+.ex h2 { font-size: 22px; letter-spacing: -.01em; }
+.ex .linha { margin-top: 12px; color: var(--muted); }
+
+/* botões */
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; padding: 11px 16px; font-size: 15px; font-weight: 700; text-decoration: none; border: 1px solid transparent; cursor: pointer; }
+.btn.primary { background: var(--violet); color: #fff; }
+.btn.primary:hover { background: var(--violet-ink); }
+.btn.ghost { background: #fff; border-color: var(--violet-line); color: var(--violet-ink); }
+.btn.ghost:hover { border-color: var(--violet); background: var(--violet-soft); }
+.btn small { font-weight: 500; opacity: .75; }
+
+/* prompt */
+.prompt { margin-top: 18px; border-radius: 12px; overflow: hidden; background: var(--code-bg); color: var(--code-fg); }
+.prompt-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid rgb(255 255 255 / 12%); }
+.prompt-head .label { font-size: 12px; font-weight: 800; letter-spacing: .12em; color: #f6a466; text-transform: uppercase; }
+.copy { margin-left: auto; border: 1px solid rgb(255 255 255 / 30%); border-radius: 999px; background: rgb(255 255 255 / 8%); color: #fff; padding: 7px 16px; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.copy:hover { background: rgb(255 255 255 / 16%); }
+.copy.ok { border-color: #f6a466; color: #ffd2ad; }
+.prompt pre { margin: 0; padding: 16px 18px 18px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif; font-size: 15.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+
+.depois { margin-top: 14px; border-left: 4px solid var(--green); background: var(--green-soft); color: var(--text); border-radius: 0 10px 10px 0; padding: 11px 15px; }
+ul.perguntas { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+ul.perguntas li { position: relative; padding-left: 22px; color: var(--text); }
+ul.perguntas li::before { content: "•"; position: absolute; left: 6px; color: var(--violet); font-weight: 800; }
+
+.page-foot { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; color: var(--faint); }
+
+@media (max-width: 600px) {
+  .topbar { padding: 0 14px; }
+  .topbar nav a { padding: 5px 7px; font-size: 12.5px; }
+  .content { padding: 24px 14px 48px; }
+  h1 { font-size: 25px; }
+  .lead { font-size: 16px; }
+  .ex { padding: 20px 16px 22px; border-radius: 14px; }
+  .ex h2 { font-size: 19px; }
+  .btn { width: 100%; justify-content: center; }
+  .prompt pre { font-size: 15px; padding: 14px 15px 16px; }
+}
+@media (max-width: 380px) { .topbar .brand { display: none; } .topbar nav { margin-left: 0; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">Claude Workshop · 17/11</div>
+  <nav aria-label="Exercícios"><a href="#ex1">Ex 1</a><a href="#ex2">Ex 2</a><a href="#ex3">Ex 3</a><a href="#ex4">Ex 4</a></nav>
+</header>
+
+<main class="content">
+  <div class="kicker">Materiais do workshop</div>
+  <h1>Claude Workshop · 17/11</h1>
+  <p class="lead">Os prompts, arquivos e links dos exercícios. Clique em <strong>Copiar</strong> e cole no Claude.</p>
+
+  <!-- Ex 1 -->
+  <section class="ex" id="ex1">
+    <div class="ex-head"><div class="num">1</div><h2>Configure o seu Claude</h2></div>
+    <p class="linha">O Claude ainda não te conhece. Em 4 perguntas, ele escreve as instruções que vão valer em todo chat.</p>
+    <div class="prompt">
+      <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+<pre>Quero configurar as minhas Instruções para o Claude. Me faça 4 perguntas, uma por vez, sobre o meu trabalho na escola e o jeito que eu gosto das respostas. Não pergunte sobre alunos nem famílias. No fim, escreva o texto pronto para eu colar, com até 1.000 caracteres.</pre>
+    </div>
+    <p class="depois">Cole o texto em Claude › Configurações › Conta › Instruções para o Claude.</p>
+  </section>
+
+  <!-- Ex 2 -->
+  <section class="ex" id="ex2">
+    <div class="ex-head"><div class="num">2</div><h2>Analise as mensalidades</h2></div>
+    <p class="linha">A diretoria pediu três números. Anexe a planilha num chat novo e cole o pedido.</p>
+    <div class="btn-row">
+      <a class="btn ghost" href="arquivos/mensalidades_Kensington_2026-08_a_11.xlsx" download="mensalidades_Kensington_2026-08_a_11.xlsx">⬇ Baixar a planilha <small>(.xlsx)</small></a>
+    </div>
+    <div class="prompt">
+      <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+<pre>De: Diretoria Financeira
+Para: Coordenação Financeira
+Assunto: Números de outubro para a reunião do Board
+
+Segue a base de mensalidades que o sistema exportou hoje (10/11). Preciso de três números para a reunião do Board de quinta:
+
+1. Quantos alunos ativos temos hoje?
+2. Quanto faturamos de mensalidades em outubro?
+3. Qual é a nossa inadimplência?
+
+Responda aqui no chat, sem criar painel nem arquivo. No fim, escreva os três números em uma linha.</pre>
+    </div>
+    <div class="btn-row">
+      <a class="btn primary" href="https://murielauler.github.io/17nov-ex01-diretoria/?turma=d1" target="_blank" rel="noopener">Envie os seus números ↗</a>
+    </div>
+  </section>
+
+  <!-- Ex 3 -->
+  <section class="ex" id="ex3">
+    <div class="ex-head"><div class="num">3</div><h2>Transforme a análise em um artefato</h2></div>
+    <p class="linha">No mesmo chat da análise, peça um painel e deixe do seu jeito.</p>
+    <div class="prompt">
+      <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+<pre>Transforme esta análise em um painel (artefato) para eu apresentar à diretoria. Mostre só o nome dos alunos. Nada de CPF, telefone ou outro dado sensível.</pre>
+    </div>
+    <ul class="perguntas">
+      <li>O que vocês precisam ver?</li>
+      <li>De que jeito?</li>
+      <li>Que destaque querem dar?</li>
+      <li>Que gráficos ajudam a entender os dados?</li>
+    </ul>
+  </section>
+
+  <!-- Ex 4 -->
+  <section class="ex" id="ex4">
+    <div class="ex-head"><div class="num">4</div><h2>Transforme a análise em uma skill</h2></div>
+    <p class="linha">Essa análise se repete todo mês. Ensine uma vez e o Claude segue as regras da escola sempre.</p>
+    <div class="btn-row">
+      <a class="btn ghost" href="arquivos/regras-da-escola-mensalidades.md" download="regras-da-escola-mensalidades.md" type="application/octet-stream">⬇ Baixar as regras da escola <small>(.md)</small></a>
+    </div>
+    <div class="prompt">
+      <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+<pre>Crie uma skill chamada analise-de-mensalidades a partir do arquivo de regras anexado. Ela deve limpar a base, calcular os três números pelas regras da escola e entregar sempre no mesmo formato.</pre>
+    </div>
+    <p class="depois">Teste: chat novo, anexe a planilha e faça as três perguntas de novo.</p>
+  </section>
+
+  <footer class="page-foot">Muriel Auler · Teach Tribe. Os dados dos exercícios são fictícios.</footer>
+</main>
+
+<script>
+document.querySelectorAll(".copy").forEach(function (btn) {
+  btn.addEventListener("click", function () {
+    var texto = btn.closest(".prompt").querySelector("pre").textContent;
+    function ok() {
+      btn.textContent = "Copiado ✓"; btn.classList.add("ok");
+      setTimeout(function () { btn.textContent = "Copiar"; btn.classList.remove("ok"); }, 1800);
+    }
+    function reserva() {
+      var t = document.createElement("textarea");
+      t.value = texto; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select();
+      try { document.execCommand("copy"); ok(); } catch (e) { btn.textContent = "Selecione e copie"; }
+      document.body.removeChild(t);
+    }
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(ok, reserva);
+    else reserva();
+  });
+});
+</script>
+</body>
+</html>
