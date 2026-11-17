@@ -108,6 +108,16 @@ ul.perguntas li::before { content: "•"; position: absolute; left: .35rem; colo
 .pn a.next:hover { background: var(--accent-ink); }
 .page-foot { margin-top: 2.6rem; font-size: .85rem; color: var(--faint); }
 
+ol.passos { margin: 1.3rem 0 0; padding: 0; list-style: none; counter-reset: ps; display: grid; gap: .6rem; }
+ol.passos li { position: relative; padding-left: 2.2rem; counter-increment: ps; }
+ol.passos li::before { content: counter(ps); position: absolute; left: 0; top: .05rem; width: 1.5rem; height: 1.5rem; display: grid; place-items: center; border-radius: .4rem; background: var(--accent-soft); color: var(--accent); font-size: .8rem; font-weight: 800; }
+details.docs { margin-top: .8rem; }
+details.docs summary { cursor: pointer; color: var(--muted); font-size: .9rem; }
+.dl-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .7rem; }
+.dl-row a { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--line); border-radius: 999px; background: #fff; padding: .3rem .75rem; font-size: .85rem; font-weight: 600; color: var(--ink); text-decoration: none; }
+.dl-row a:hover { border-color: var(--accent); color: var(--accent); }
+.prompt-head strong { font-size: .92rem; color: #fff; font-weight: 600; }
+
 .overlay { display: none; }
 
 @media (max-width: 860px) {
@@ -147,10 +157,12 @@ ul.perguntas li::before { content: "•"; position: absolute; left: .35rem; colo
       <a href="#ex2"><span class="n">02</span><span>Analise as mensalidades</span></a>
       <a href="#ex3"><span class="n">03</span><span>Transforme em artefato</span></a>
       <a href="#ex4"><span class="n">04</span><span>Transforme em skill</span></a>
+      <a href="#ex5"><span class="n">05</span><span>Cowork: pasta do aluno</span></a>
     </nav>
     <div class="side-links">
       <a href="arquivos/mensalidades_Kensington_2026-08_a_11.xlsx" download="mensalidades_Kensington_2026-08_a_11.xlsx">⬇ Planilha <small>.xlsx</small></a>
       <a href="arquivos/regras-da-escola-mensalidades.md" download="regras-da-escola-mensalidades.md">⬇ Regras da escola <small>.md</small></a>
+      <a href="arquivos/Ex5-documentos-recebidos.zip" download="Ex5-documentos-recebidos.zip">⬇ Documentos do Ex5 <small>.zip</small></a>
       <a href="https://murielauler.github.io/17nov-ex01-diretoria/?turma=d1" target="_blank" rel="noopener">↗ Envie os seus números</a>
     </div>
     <div class="side-box"><strong>Dados fictícios.</strong> Não use dados reais de alunos ou famílias nos exercícios.</div>
@@ -170,6 +182,7 @@ ul.perguntas li::before { content: "•"; position: absolute; left: .35rem; colo
           <a href="#ex2"><span class="part">EXERCÍCIO 02</span><h4>Analise as mensalidades</h4><p>A planilha e o pedido da diretoria.</p></a>
           <a href="#ex3"><span class="part">EXERCÍCIO 03</span><h4>Transforme em artefato</h4><p>Um painel para apresentar à diretoria.</p></a>
           <a href="#ex4"><span class="part">EXERCÍCIO 04</span><h4>Transforme em skill</h4><p>Ensine as regras da escola uma vez só.</p></a>
+          <a href="#ex5"><span class="part">EXERCÍCIO 05</span><h4>Cowork: pasta do aluno</h4><p>Do documento solto à pasta organizada.</p></a>
         </div>
         <footer class="step-foot">
           <nav class="pn"><a class="next" href="#ex1">Começar →</a></nav>
@@ -178,7 +191,7 @@ ul.perguntas li::before { content: "•"; position: absolute; left: .35rem; colo
 
       <!-- EX 1 -->
       <section class="step" id="ex1">
-        <div class="step-meta"><span class="kicker">Exercício 01 de 04</span></div>
+        <div class="step-meta"><span class="kicker">Exercício 01 de 05</span></div>
         <h2>Configure o seu Claude</h2>
         <p class="lead">O Claude ainda não te conhece. Em 4 perguntas, ele escreve as instruções que vão valer em todo chat.</p>
         <div class="prompt">
@@ -193,7 +206,7 @@ ul.perguntas li::before { content: "•"; position: absolute; left: .35rem; colo
 
       <!-- EX 2 -->
       <section class="step" id="ex2">
-        <div class="step-meta"><span class="kicker">Exercício 02 de 04</span></div>
+        <div class="step-meta"><span class="kicker">Exercício 02 de 05</span></div>
         <h2>Analise as mensalidades</h2>
         <p class="lead">A diretoria pediu três números. Anexe a planilha num chat novo e cole o pedido.</p>
         <div class="btn-row">
@@ -223,7 +236,7 @@ Responda aqui no chat, sem criar painel nem arquivo. No fim, escreva os três n�
 
       <!-- EX 3 -->
       <section class="step" id="ex3">
-        <div class="step-meta"><span class="kicker">Exercício 03 de 04</span></div>
+        <div class="step-meta"><span class="kicker">Exercício 03 de 05</span></div>
         <h2>Transforme a análise em um artefato</h2>
         <p class="lead">No mesmo chat da análise, peça um painel e deixe do seu jeito.</p>
         <div class="prompt">
@@ -246,7 +259,7 @@ Responda aqui no chat, sem criar painel nem arquivo. No fim, escreva os três n�
 
       <!-- EX 4 -->
       <section class="step" id="ex4">
-        <div class="step-meta"><span class="kicker">Exercício 04 de 04</span></div>
+        <div class="step-meta"><span class="kicker">Exercício 04 de 05</span></div>
         <h2>Transforme a análise em uma skill</h2>
         <p class="lead">Essa análise se repete todo mês. Ensine uma vez e o Claude segue as regras da escola sempre.</p>
         <div class="btn-row">
@@ -258,7 +271,57 @@ Responda aqui no chat, sem criar painel nem arquivo. No fim, escreva os três n�
         </div>
         <p class="depois">Teste: chat novo, anexe a planilha e faça as três perguntas de novo.</p>
         <footer class="step-foot">
-          <nav class="pn"><a href="#ex3">← Exercício 03</a><a class="next" href="#inicio">Voltar ao início</a></nav>
+          <nav class="pn"><a href="#ex3">← Exercício 03</a><a class="next" href="#ex5">Exercício 05 →</a></nav>
+        </footer>
+      </section>
+
+      <!-- EX 5 -->
+      <section class="step" id="ex5">
+        <div class="step-meta"><span class="kicker">Exercício 05 de 05</span><span class="tag">Cowork</span></div>
+        <h2>Cowork: do documento solto à pasta do aluno</h2>
+        <p class="lead">Contratos e comprovantes chegaram soltos, com nomes aleatórios. O Cowork organiza tudo por aluno e por mês.</p>
+        <ol class="passos">
+          <li>Crie uma pasta de teste no seu OneDrive pessoal (nunca no SharePoint da escola).</li>
+          <li>Baixe os 10 arquivos para essa pasta.</li>
+          <li>Abra o Claude Desktop na aba Cowork, escolha a pasta e cole o pedido.</li>
+        </ol>
+        <div class="btn-row">
+          <a class="btn ghost" href="arquivos/Ex5-documentos-recebidos.zip" download="Ex5-documentos-recebidos.zip">⬇ Baixar os 10 documentos <small>(.zip)</small></a>
+        </div>
+        <details class="docs">
+          <summary>Ou baixe um por um</summary>
+          <div class="dl-row">
+            <a href="arquivos/ex5/comprovante%20%281%29.pdf" download="comprovante (1).pdf">⬇ comprovante (1).pdf</a>
+            <a href="arquivos/ex5/comprovante%20%282%29.pdf" download="comprovante (2).pdf">⬇ comprovante (2).pdf</a>
+            <a href="arquivos/ex5/comprovante.pdf" download="comprovante.pdf">⬇ comprovante.pdf</a>
+            <a href="arquivos/ex5/Comprovante_Pix_02-10.pdf" download="Comprovante_Pix_02-10.pdf">⬇ Comprovante_Pix_02-10.pdf</a>
+            <a href="arquivos/ex5/Contrato_assinado%20%281%29.pdf" download="Contrato_assinado (1).pdf">⬇ Contrato_assinado (1).pdf</a>
+            <a href="arquivos/ex5/contrato_rematricula_2027.pdf" download="contrato_rematricula_2027.pdf">⬇ contrato_rematricula_2027.pdf</a>
+            <a href="arquivos/ex5/DocuSign_Envelope_4F2A91.pdf" download="DocuSign_Envelope_4F2A91.pdf">⬇ DocuSign_Envelope_4F2A91.pdf</a>
+            <a href="arquivos/ex5/IMG_4471.pdf" download="IMG_4471.pdf">⬇ IMG_4471.pdf</a>
+            <a href="arquivos/ex5/Pagamento_boleto_28-10.pdf" download="Pagamento_boleto_28-10.pdf">⬇ Pagamento_boleto_28-10.pdf</a>
+            <a href="arquivos/ex5/scan_20260803_1012.pdf" download="scan_20260803_1012.pdf">⬇ scan_20260803_1012.pdf</a>
+          </div>
+        </details>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt 1</span><strong>O pedido para o Cowork</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Nesta pasta há contratos de rematrícula e comprovantes de pagamento de mensalidade.
+
+Organize assim:
+1. Uma pasta para cada aluno, com o nome completo.
+2. Dentro dela, uma pasta para cada mês (Agosto, Setembro, Outubro...).
+3. Comprovante vai no mês da mensalidade que ele paga. Contrato vai no mês em que foi assinado.
+4. Renomeie cada arquivo assim: Nome do aluno - Contrato ou Comprovante - Mês.
+
+Antes de mover qualquer coisa, me mostre o plano em uma tabela e espere o meu ok.
+Se algum documento tiver problema, como falta de assinatura, não mova e me avise.</pre>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt 2</span><strong>Depois, transforme em skill</strong><button class="copy" type="button">Copiar</button></div>
+<pre>Transforme o que fizemos agora em uma skill chamada organizar-documentos-alunos, para eu usar todo mês com os documentos novos.</pre>
+        </div>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#ex4">← Exercício 04</a><a class="next" href="#inicio">Voltar ao início</a></nav>
         </footer>
       </section>
 
