@@ -11,119 +11,196 @@
   --text: #3a2e27;
   --muted: #755B4A;
   --faint: #a8968a;
-  --violet: #EF701A;
-  --violet-ink: #c85a0f;
-  --violet-soft: #fde9da;
-  --violet-line: #f4c9a6;
-  --green: #EF701A;
-  --green-soft: #fdf1e6;
+  --accent: #EF701A;
+  --accent-ink: #c85a0f;
+  --accent-soft: #fde9da;
+  --accent-line: #f4c9a6;
   --paper: #FFF9F1;
   --white: #ffffff;
   --line: #ece2d8;
   --code-bg: #2b211c;
   --code-fg: #f7ede4;
+  --topbar-h: 3.4rem;
+  --sidebar-w: 17rem;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+html { font-size: clamp(15px, min(1vw, 1.75vh), 22px); }
 body {
   margin: 0; background: var(--paper); color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  font-size: 1rem; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden;
 }
 h1, h2, h3 { color: var(--ink); line-height: 1.25; margin: 0; }
 p { margin: 0; }
 button { font: inherit; }
 
-/* topo */
-.topbar { position: sticky; top: 0; z-index: 10; height: 52px; display: flex; align-items: center; gap: 16px; padding: 0 20px; background: var(--ink); color: #fff; }
-.topbar .brand { font-size: 14px; font-weight: 700; white-space: nowrap; }
-.topbar nav { margin-left: auto; display: flex; gap: 6px; }
-.topbar nav a { color: #e9d6c6; text-decoration: none; font-size: 13px; font-weight: 700; padding: 5px 10px; border-radius: 999px; }
-.topbar nav a:hover { background: rgb(255 255 255 / 10%); color: #fff; }
+/* ---------- topo ---------- */
+.topbar { position: sticky; top: 0; z-index: 60; height: var(--topbar-h); display: flex; align-items: center; gap: 1rem; padding: 0 1.4rem; background: var(--ink); color: #fff; }
+.topbar .brand { display: flex; align-items: baseline; gap: .7rem; font-size: .95rem; font-weight: 700; white-space: nowrap; }
+.topbar .brand small { color: #e2c8b2; font-weight: 500; }
+.menu-toggle { display: none; border: 1px solid rgb(255 255 255 / 30%); border-radius: .5rem; background: transparent; color: #fff; padding: .3rem .7rem; font-size: .9rem; cursor: pointer; }
 
-.content { max-width: 760px; margin: 0 auto; padding: 36px 20px 64px; }
-.kicker { font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); }
-h1 { font-size: 30px; letter-spacing: -.015em; margin-top: 8px; }
-.lead { margin-top: 10px; color: var(--muted); font-size: 17px; }
+/* ---------- layout ---------- */
+.layout { display: grid; grid-template-columns: var(--sidebar-w) minmax(0, 1fr); min-height: calc(100vh - var(--topbar-h)); }
+.sidebar { position: sticky; top: var(--topbar-h); align-self: start; height: calc(100vh - var(--topbar-h)); overflow-y: auto; border-right: 1px solid var(--line); background: #fff; padding: 1.4rem 1rem 2rem; }
+.sidebar .group { margin: 1.1rem .7rem .4rem; font-size: .72rem; font-weight: 800; letter-spacing: .12em; color: var(--faint); text-transform: uppercase; }
+.sidebar .group:first-child { margin-top: .2rem; }
+.sidebar nav a { display: grid; grid-template-columns: 1.8rem 1fr; align-items: center; gap: .4rem; padding: .5rem .7rem; border-radius: .55rem; color: var(--muted); text-decoration: none; font-size: .95rem; border-left: 3px solid transparent; }
+.sidebar nav a .n { font-size: .8rem; font-weight: 800; color: var(--faint); }
+.sidebar nav a:hover { background: var(--paper); color: var(--ink); }
+.sidebar nav a.is-active { background: var(--accent-soft); color: var(--accent-ink); font-weight: 700; border-left-color: var(--accent); }
+.sidebar nav a.is-active .n { color: var(--accent); }
+.side-links { margin: 1.4rem .4rem 0; display: grid; gap: .5rem; }
+.side-links a { display: flex; align-items: center; gap: .5rem; padding: .55rem .75rem; border-radius: .55rem; border: 1px solid var(--accent-line); background: var(--accent-soft); color: var(--accent-ink); font-size: .85rem; font-weight: 700; text-decoration: none; }
+.side-links a:hover { background: #fbdcc4; }
+.side-links a small { margin-left: auto; font-weight: 500; color: var(--muted); }
+.side-box { margin: 1.1rem .4rem 0; padding: .7rem .85rem; border-radius: .7rem; background: var(--paper); border: 1px solid var(--line); font-size: .82rem; color: var(--muted); line-height: 1.5; }
+.side-box strong { color: var(--ink); }
 
-/* exercícios */
-.ex { margin-top: 28px; background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 26px 26px 28px; }
-.ex-head { display: flex; align-items: center; gap: 14px; }
-.num { flex: none; width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--violet-soft); color: var(--violet); font-weight: 800; font-size: 17px; }
-.ex h2 { font-size: 22px; letter-spacing: -.01em; }
-.ex .linha { margin-top: 12px; color: var(--muted); }
+main { min-width: 0; }
+.content { max-width: 54rem; margin: 0 auto; padding: 2.4rem 3rem 5rem; }
 
-/* botões */
-.btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-.btn { display: inline-flex; align-items: center; gap: 8px; border-radius: 10px; padding: 11px 16px; font-size: 15px; font-weight: 700; text-decoration: none; border: 1px solid transparent; cursor: pointer; }
-.btn.primary { background: var(--violet); color: #fff; }
-.btn.primary:hover { background: var(--violet-ink); }
-.btn.ghost { background: #fff; border-color: var(--violet-line); color: var(--violet-ink); }
-.btn.ghost:hover { border-color: var(--violet); background: var(--violet-soft); }
+/* ---------- etapas ---------- */
+.step { display: none; }
+.step.active { display: block; }
+.step-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-bottom: .6rem; }
+.kicker { font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.tag { display: inline-flex; align-items: center; border-radius: 999px; padding: .15rem .6rem; font-size: .75rem; font-weight: 700; background: var(--accent-soft); color: var(--accent-ink); }
+h1 { font-size: 1.9rem; letter-spacing: -.015em; }
+.step h2 { font-size: 1.55rem; letter-spacing: -.01em; }
+.lead { margin-top: .6rem; color: var(--muted); font-size: 1.08rem; max-width: 44rem; }
+
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.6rem; }
+.cards a { display: block; border: 1px solid var(--line); border-radius: .9rem; background: #fff; padding: 1.1rem 1.25rem; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; }
+.cards a:hover { border-color: var(--accent); transform: translateY(-1px); }
+.cards .part { font-size: .78rem; font-weight: 800; letter-spacing: .1em; color: var(--accent); }
+.cards h4 { margin: .3rem 0 .35rem; font-size: 1.05rem; color: var(--ink); }
+.cards p { color: var(--muted); font-size: .9rem; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.3rem; }
+.btn { display: inline-flex; align-items: center; gap: .5rem; border-radius: .6rem; padding: .65rem 1rem; font-size: .95rem; font-weight: 700; text-decoration: none; border: 1px solid transparent; cursor: pointer; }
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.primary:hover { background: var(--accent-ink); }
+.btn.ghost { background: #fff; border-color: var(--accent-line); color: var(--accent-ink); }
+.btn.ghost:hover { border-color: var(--accent); background: var(--accent-soft); }
 .btn small { font-weight: 500; opacity: .75; }
 
-/* prompt */
-.prompt { margin-top: 18px; border-radius: 12px; overflow: hidden; background: var(--code-bg); color: var(--code-fg); }
-.prompt-head { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid rgb(255 255 255 / 12%); }
-.prompt-head .label { font-size: 12px; font-weight: 800; letter-spacing: .12em; color: #f6a466; text-transform: uppercase; }
-.copy { margin-left: auto; border: 1px solid rgb(255 255 255 / 30%); border-radius: 999px; background: rgb(255 255 255 / 8%); color: #fff; padding: 7px 16px; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.prompt { margin-top: 1.4rem; border-radius: .8rem; overflow: hidden; background: var(--code-bg); color: var(--code-fg); }
+.prompt-head { display: flex; align-items: center; gap: .8rem; padding: .75rem 1.1rem; border-bottom: 1px solid rgb(255 255 255 / 12%); }
+.prompt-head .label { font-size: .75rem; font-weight: 800; letter-spacing: .12em; color: #f6a466; text-transform: uppercase; }
+.copy { margin-left: auto; border: 1px solid rgb(255 255 255 / 30%); border-radius: 999px; background: rgb(255 255 255 / 8%); color: #fff; padding: .4rem 1rem; font-size: .9rem; font-weight: 700; cursor: pointer; white-space: nowrap; }
 .copy:hover { background: rgb(255 255 255 / 16%); }
 .copy.ok { border-color: #f6a466; color: #ffd2ad; }
-.prompt pre { margin: 0; padding: 16px 18px 18px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif; font-size: 15.5px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; }
+.prompt pre { margin: 0; padding: 1.05rem 1.2rem 1.2rem; font-family: inherit; font-size: 1rem; line-height: 1.65; white-space: pre-wrap; word-break: break-word; }
 
-.depois { margin-top: 14px; border-left: 4px solid var(--green); background: var(--green-soft); color: var(--text); border-radius: 0 10px 10px 0; padding: 11px 15px; }
-ul.perguntas { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
-ul.perguntas li { position: relative; padding-left: 22px; color: var(--text); }
-ul.perguntas li::before { content: "•"; position: absolute; left: 6px; color: var(--violet); font-weight: 800; }
+.depois { margin-top: 1rem; border-left: 4px solid var(--accent); background: #fdf1e6; color: var(--text); border-radius: 0 .6rem .6rem 0; padding: .75rem 1rem; }
+.bloco { margin-top: 1.4rem; border: 1px solid var(--line); border-radius: .8rem; background: #fff; padding: 1rem 1.2rem; }
+.bloco h3 { font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); margin-bottom: .6rem; }
+ul.perguntas { margin: 0; padding: 0; list-style: none; display: grid; gap: .45rem; }
+ul.perguntas li { position: relative; padding-left: 1.3rem; }
+ul.perguntas li::before { content: "•"; position: absolute; left: .35rem; color: var(--accent); font-weight: 800; }
 
-.page-foot { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; color: var(--faint); }
+.step-foot { display: flex; align-items: center; gap: .8rem; margin-top: 2.2rem; padding-top: 1.2rem; border-top: 1px dashed var(--line); }
+.pn { margin-left: auto; display: flex; gap: .6rem; }
+.pn a { display: inline-flex; align-items: center; gap: .4rem; padding: .5rem .85rem; border-radius: .55rem; border: 1px solid var(--line); background: #fff; font-size: .92rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+.pn a:hover { border-color: var(--accent); color: var(--accent); }
+.pn a.next { background: var(--accent); border-color: var(--accent); color: #fff; }
+.pn a.next:hover { background: var(--accent-ink); }
+.page-foot { margin-top: 2.6rem; font-size: .85rem; color: var(--faint); }
 
-@media (max-width: 600px) {
-  .topbar { padding: 0 14px; }
-  .topbar nav a { padding: 5px 7px; font-size: 12.5px; }
-  .content { padding: 24px 14px 48px; }
-  h1 { font-size: 25px; }
-  .lead { font-size: 16px; }
-  .ex { padding: 20px 16px 22px; border-radius: 14px; }
-  .ex h2 { font-size: 19px; }
-  .btn { width: 100%; justify-content: center; }
-  .prompt pre { font-size: 15px; padding: 14px 15px 16px; }
+.overlay { display: none; }
+
+@media (max-width: 860px) {
+  html { font-size: 16px; }
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .menu-toggle { display: inline-flex; }
+  .topbar { padding: 0 1rem; }
+  .topbar .brand small { display: none; }
+  .sidebar { position: fixed; top: var(--topbar-h); left: 0; bottom: 0; width: min(320px, 86vw); transform: translateX(-104%); transition: transform 180ms ease; z-index: 70; box-shadow: 0 10px 40px rgb(0 0 0 / 20%); }
+  body.nav-open .sidebar { transform: none; }
+  body.nav-open .overlay { display: block; position: fixed; inset: var(--topbar-h) 0 0 0; background: rgb(48 37 31 / 35%); z-index: 65; }
+  .content { padding: 1.5rem 1rem 3.5rem; }
+  .cards { grid-template-columns: 1fr; }
+  h1 { font-size: 1.6rem; }
+  .step h2 { font-size: 1.35rem; }
+  .btn-row .btn { width: 100%; justify-content: center; }
+  .step-foot { flex-wrap: wrap; }
+  .pn { margin-left: 0; width: 100%; }
+  .pn a { flex: 1; justify-content: center; }
 }
-@media (max-width: 380px) { .topbar .brand { display: none; } .topbar nav { margin-left: 0; } }
 </style>
 </head>
 <body>
 
 <header class="topbar">
-  <div class="brand">Claude Workshop · 17/11</div>
-  <nav aria-label="Exercícios"><a href="#ex1">Ex 1</a><a href="#ex2">Ex 2</a><a href="#ex3">Ex 3</a><a href="#ex4">Ex 4</a></nav>
+  <button class="menu-toggle" type="button" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
+  <div class="brand">Claude Workshop <small>17/11</small></div>
 </header>
 
-<main class="content">
-  <div class="kicker">Materiais do workshop</div>
-  <h1>Claude Workshop · 17/11</h1>
-  <p class="lead">Os prompts, arquivos e links dos exercícios. Clique em <strong>Copiar</strong> e cole no Claude.</p>
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="Menu">
+    <nav>
+      <p class="group">Começo</p>
+      <a href="#inicio"><span class="n">—</span><span>Materiais do dia</span></a>
+      <p class="group">Exercícios</p>
+      <a href="#ex1"><span class="n">01</span><span>Configure o seu Claude</span></a>
+      <a href="#ex2"><span class="n">02</span><span>Analise as mensalidades</span></a>
+      <a href="#ex3"><span class="n">03</span><span>Transforme em artefato</span></a>
+      <a href="#ex4"><span class="n">04</span><span>Transforme em skill</span></a>
+    </nav>
+    <div class="side-links">
+      <a href="arquivos/mensalidades_Kensington_2026-08_a_11.xlsx" download="mensalidades_Kensington_2026-08_a_11.xlsx">⬇ Planilha <small>.xlsx</small></a>
+      <a href="arquivos/regras-da-escola-mensalidades.md" download="regras-da-escola-mensalidades.md">⬇ Regras da escola <small>.md</small></a>
+      <a href="https://murielauler.github.io/17nov-ex01-diretoria/?turma=d1" target="_blank" rel="noopener">↗ Envie os seus números</a>
+    </div>
+    <div class="side-box"><strong>Dados fictícios.</strong> Não use dados reais de alunos ou famílias nos exercícios.</div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
 
-  <!-- Ex 1 -->
-  <section class="ex" id="ex1">
-    <div class="ex-head"><div class="num">1</div><h2>Configure o seu Claude</h2></div>
-    <p class="linha">O Claude ainda não te conhece. Em 4 perguntas, ele escreve as instruções que vão valer em todo chat.</p>
-    <div class="prompt">
-      <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+  <main>
+    <div class="content">
+
+      <!-- INÍCIO -->
+      <section class="step" id="inicio">
+        <div class="step-meta"><span class="kicker">Materiais do workshop</span></div>
+        <h1>Claude Workshop · 17/11</h1>
+        <p class="lead">Os prompts, arquivos e links dos exercícios. Escolha o exercício no menu, clique em <strong>Copiar</strong> e cole no Claude.</p>
+        <div class="cards">
+          <a href="#ex1"><span class="part">EXERCÍCIO 01</span><h4>Configure o seu Claude</h4><p>4 perguntas e o Claude escreve as suas instruções.</p></a>
+          <a href="#ex2"><span class="part">EXERCÍCIO 02</span><h4>Analise as mensalidades</h4><p>A planilha e o pedido da diretoria.</p></a>
+          <a href="#ex3"><span class="part">EXERCÍCIO 03</span><h4>Transforme em artefato</h4><p>Um painel para apresentar à diretoria.</p></a>
+          <a href="#ex4"><span class="part">EXERCÍCIO 04</span><h4>Transforme em skill</h4><p>Ensine as regras da escola uma vez só.</p></a>
+        </div>
+        <footer class="step-foot">
+          <nav class="pn"><a class="next" href="#ex1">Começar →</a></nav>
+        </footer>
+      </section>
+
+      <!-- EX 1 -->
+      <section class="step" id="ex1">
+        <div class="step-meta"><span class="kicker">Exercício 01 de 04</span></div>
+        <h2>Configure o seu Claude</h2>
+        <p class="lead">O Claude ainda não te conhece. Em 4 perguntas, ele escreve as instruções que vão valer em todo chat.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
 <pre>Quero configurar as minhas Instruções para o Claude. Me faça 4 perguntas, uma por vez, sobre o meu trabalho na escola e o jeito que eu gosto das respostas. Não pergunte sobre alunos nem famílias. No fim, escreva o texto pronto para eu colar, com até 1.000 caracteres.</pre>
-    </div>
-    <p class="depois">Cole o texto em Claude › Configurações › Conta › Instruções para o Claude.</p>
-  </section>
+        </div>
+        <p class="depois">Cole o texto em Claude › Configurações › Conta › Instruções para o Claude.</p>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#inicio">← Início</a><a class="next" href="#ex2">Exercício 02 →</a></nav>
+        </footer>
+      </section>
 
-  <!-- Ex 2 -->
-  <section class="ex" id="ex2">
-    <div class="ex-head"><div class="num">2</div><h2>Analise as mensalidades</h2></div>
-    <p class="linha">A diretoria pediu três números. Anexe a planilha num chat novo e cole o pedido.</p>
-    <div class="btn-row">
-      <a class="btn ghost" href="arquivos/mensalidades_Kensington_2026-08_a_11.xlsx" download="mensalidades_Kensington_2026-08_a_11.xlsx">⬇ Baixar a planilha <small>(.xlsx)</small></a>
-    </div>
-    <div class="prompt">
-      <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+      <!-- EX 2 -->
+      <section class="step" id="ex2">
+        <div class="step-meta"><span class="kicker">Exercício 02 de 04</span></div>
+        <h2>Analise as mensalidades</h2>
+        <p class="lead">A diretoria pediu três números. Anexe a planilha num chat novo e cole o pedido.</p>
+        <div class="btn-row">
+          <a class="btn ghost" href="arquivos/mensalidades_Kensington_2026-08_a_11.xlsx" download="mensalidades_Kensington_2026-08_a_11.xlsx">⬇ Baixar a planilha <small>(.xlsx)</small></a>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
 <pre>De: Diretoria Financeira
 Para: Coordenação Financeira
 Assunto: Números de outubro para a reunião do Board
@@ -135,64 +212,102 @@ Segue a base de mensalidades que o sistema exportou hoje (10/11). Preciso de tr�
 3. Qual é a nossa inadimplência?
 
 Responda aqui no chat, sem criar painel nem arquivo. No fim, escreva os três números em uma linha.</pre>
-    </div>
-    <div class="btn-row">
-      <a class="btn primary" href="https://murielauler.github.io/17nov-ex01-diretoria/?turma=d1" target="_blank" rel="noopener">Envie os seus números ↗</a>
-    </div>
-  </section>
+        </div>
+        <div class="btn-row">
+          <a class="btn primary" href="https://murielauler.github.io/17nov-ex01-diretoria/?turma=d1" target="_blank" rel="noopener">Envie os seus números ↗</a>
+        </div>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#ex1">← Exercício 01</a><a class="next" href="#ex3">Exercício 03 →</a></nav>
+        </footer>
+      </section>
 
-  <!-- Ex 3 -->
-  <section class="ex" id="ex3">
-    <div class="ex-head"><div class="num">3</div><h2>Transforme a análise em um artefato</h2></div>
-    <p class="linha">No mesmo chat da análise, peça um painel e deixe do seu jeito.</p>
-    <div class="prompt">
-      <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+      <!-- EX 3 -->
+      <section class="step" id="ex3">
+        <div class="step-meta"><span class="kicker">Exercício 03 de 04</span></div>
+        <h2>Transforme a análise em um artefato</h2>
+        <p class="lead">No mesmo chat da análise, peça um painel e deixe do seu jeito.</p>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
 <pre>Transforme esta análise em um painel (artefato) para eu apresentar à diretoria. Mostre só o nome dos alunos. Nada de CPF, telefone ou outro dado sensível.</pre>
-    </div>
-    <ul class="perguntas">
-      <li>O que vocês precisam ver?</li>
-      <li>De que jeito?</li>
-      <li>Que destaque querem dar?</li>
-      <li>Que gráficos ajudam a entender os dados?</li>
-    </ul>
-  </section>
+        </div>
+        <div class="bloco">
+          <h3>Depois, deixe do seu jeito</h3>
+          <ul class="perguntas">
+            <li>O que vocês precisam ver?</li>
+            <li>De que jeito?</li>
+            <li>Que destaque querem dar?</li>
+            <li>Que gráficos ajudam a entender os dados?</li>
+          </ul>
+        </div>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#ex2">← Exercício 02</a><a class="next" href="#ex4">Exercício 04 →</a></nav>
+        </footer>
+      </section>
 
-  <!-- Ex 4 -->
-  <section class="ex" id="ex4">
-    <div class="ex-head"><div class="num">4</div><h2>Transforme a análise em uma skill</h2></div>
-    <p class="linha">Essa análise se repete todo mês. Ensine uma vez e o Claude segue as regras da escola sempre.</p>
-    <div class="btn-row">
-      <a class="btn ghost" href="arquivos/regras-da-escola-mensalidades.md" download="regras-da-escola-mensalidades.md" type="application/octet-stream">⬇ Baixar as regras da escola <small>(.md)</small></a>
-    </div>
-    <div class="prompt">
-      <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
+      <!-- EX 4 -->
+      <section class="step" id="ex4">
+        <div class="step-meta"><span class="kicker">Exercício 04 de 04</span></div>
+        <h2>Transforme a análise em uma skill</h2>
+        <p class="lead">Essa análise se repete todo mês. Ensine uma vez e o Claude segue as regras da escola sempre.</p>
+        <div class="btn-row">
+          <a class="btn ghost" href="arquivos/regras-da-escola-mensalidades.md" download="regras-da-escola-mensalidades.md">⬇ Baixar as regras da escola <small>(.md)</small></a>
+        </div>
+        <div class="prompt">
+          <div class="prompt-head"><span class="label">Prompt</span><button class="copy" type="button">Copiar</button></div>
 <pre>Crie uma skill chamada analise-de-mensalidades a partir do arquivo de regras anexado. Ela deve limpar a base, calcular os três números pelas regras da escola e entregar sempre no mesmo formato.</pre>
-    </div>
-    <p class="depois">Teste: chat novo, anexe a planilha e faça as três perguntas de novo.</p>
-  </section>
+        </div>
+        <p class="depois">Teste: chat novo, anexe a planilha e faça as três perguntas de novo.</p>
+        <footer class="step-foot">
+          <nav class="pn"><a href="#ex3">← Exercício 03</a><a class="next" href="#inicio">Voltar ao início</a></nav>
+        </footer>
+      </section>
 
-  <footer class="page-foot">Muriel Auler · Teach Tribe. Os dados dos exercícios são fictícios.</footer>
-</main>
+      <p class="page-foot" id="rodape">Muriel Auler · Teach Tribe. Os dados dos exercícios são fictícios.</p>
+    </div>
+  </main>
+</div>
 
 <script>
-document.querySelectorAll(".copy").forEach(function (btn) {
-  btn.addEventListener("click", function () {
-    var texto = btn.closest(".prompt").querySelector("pre").textContent;
-    function ok() {
-      btn.textContent = "Copiado ✓"; btn.classList.add("ok");
-      setTimeout(function () { btn.textContent = "Copiar"; btn.classList.remove("ok"); }, 1800);
-    }
-    function reserva() {
-      var t = document.createElement("textarea");
-      t.value = texto; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
-      document.body.appendChild(t); t.select();
-      try { document.execCommand("copy"); ok(); } catch (e) { btn.textContent = "Selecione e copie"; }
-      document.body.removeChild(t);
-    }
-    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(ok, reserva);
-    else reserva();
+(function () {
+  var steps = [].slice.call(document.querySelectorAll(".step"));
+  var links = [].slice.call(document.querySelectorAll(".sidebar nav a"));
+  function mostrar() {
+    var id = (location.hash || "#inicio").slice(1);
+    if (!document.getElementById(id) || !document.getElementById(id).classList.contains("step")) id = "inicio";
+    steps.forEach(function (s) { s.classList.toggle("active", s.id === id); });
+    links.forEach(function (a) { a.classList.toggle("is-active", a.getAttribute("href") === "#" + id); });
+    document.body.classList.remove("nav-open");
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", mostrar);
+  mostrar();
+
+  var toggle = document.querySelector(".menu-toggle");
+  toggle.addEventListener("click", function () {
+    var aberto = document.body.classList.toggle("nav-open");
+    toggle.setAttribute("aria-expanded", aberto ? "true" : "false");
   });
-});
+  document.getElementById("overlay").addEventListener("click", function () { document.body.classList.remove("nav-open"); });
+
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var texto = btn.closest(".prompt").querySelector("pre").textContent;
+      function ok() {
+        btn.textContent = "Copiado ✓"; btn.classList.add("ok");
+        setTimeout(function () { btn.textContent = "Copiar"; btn.classList.remove("ok"); }, 1800);
+      }
+      function reserva() {
+        var t = document.createElement("textarea");
+        t.value = texto; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.appendChild(t); t.select();
+        try { document.execCommand("copy"); ok(); } catch (e) { btn.textContent = "Selecione e copie"; }
+        document.body.removeChild(t);
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(texto).then(ok, reserva);
+      else reserva();
+    });
+  });
+})();
 </script>
 </body>
 </html>
